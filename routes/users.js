@@ -5,6 +5,7 @@ var models = require('../models');
 const auth = require("../config/auth");
 const bcrypt = require("bcryptjs");
 const passport = require('passport');
+const connectEnsure = require('connect-ensure-login');
 
 
 /* GET users listing. */

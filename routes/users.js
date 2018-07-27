@@ -147,4 +147,23 @@ router.get('/logout', function (req, res) {
     });
 
 
+    router.delete('/:id/delete', (req, res) => {
+      let userId = parseInt(req.params.id);
+      models.users
+      .update(
+        {
+          Deleted: true
+        },
+        {
+          where: {
+            UserId: userId
+          }
+        }
+      )
+      .then(user => {
+        res.redirect('/users');
+      });
+    });
+
+
 module.exports = router;

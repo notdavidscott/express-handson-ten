@@ -9,17 +9,17 @@ Username: {{Username}} <br>
 </p>
 <hr/>
 
-{{!-- 
- <script>
-     
-        function onDelete() {
-                $.ajax({
-                    url: '/users/{{UserId}}/delete',
-                    method: 'DELETE', complete: () => window.location = "/users"
-                })
-            }
+
+        <script>
             
-            </script> --}}
+                function onDelete() {
+                        $.ajax({
+                            url: '/users/{{UserId}}/delete',
+                            method: 'DELETE', complete: () => window.location = "/users"
+                        })
+                    }
+                    
+                    </script>
 
 <h3>Admin Access - Delete User:</h3>
 

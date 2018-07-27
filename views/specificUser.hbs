@@ -1,0 +1,36 @@
+<p style="font-size: 30px;color:rgb(47, 134, 168);"><br>
+Username: {{Username}} <br>
+<hr/>
+<strong>Full Name:</strong> {{FirstName}} {{LastName}}
+<br>
+<strong>Contact Info </strong><br>
+<strong style="margin-left:10px;">Email: </strong>{{Email}} <br>
+<strong style="margin-left:10px;">User Id: </strong>{{UserId}} 
+</p>
+<hr/>
+
+{{!-- 
+ <script>
+     
+        function onDelete() {
+                $.ajax({
+                    url: '/users/{{UserId}}/delete',
+                    method: 'DELETE', complete: () => window.location = "/users"
+                })
+            }
+            
+            </script> --}}
+
+<h3>Admin Access - Delete User:</h3>
+
+  <div class="button-box1">
+      
+      <a class="btn" href="/users" id="back">Back</a><br>
+      <button class="btn" onclick="onDelete()" id="deleteButton">Delete User</button>
+  </div>
+  
+
+
+<div>
+    
+</div> 

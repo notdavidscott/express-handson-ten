@@ -107,11 +107,44 @@ router.get('/profile/:id', auth.verifyUser, function(req, res, next) {
 
 });
 
+
 router.get('/logout', function (req, res) {
   res.cookie('jwt', null);
   res.redirect('/users/login');
   });
-  module.exports = router;
+
+//admin access
+
+      router.get('/', (req, res, next) => {
+        models.users.findAll({
+          where: {
+            Deleted: null
+          }
+        })
+        .then(usersFound => {
+          res.render('users', {
+            users: usersFound
+          });
+        });
+      });
+
+  router.get('/:id', (req, res) => {
+      let userId = req.params.id;
+      models.users.find({
+        where: {
+          UserId: userId
+        }
+      }) 
+      .then(user => {
+        res.render('specificUser', {
+          UserId: user.UserId, 
+          Username: user.Username,
+          FirstName: user.FirstName,
+          LastName: user.LastName, 
+          Email: user.Email
+        });
+      });
+    });
 
 
 module.exports = router;

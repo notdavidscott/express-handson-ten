@@ -7,11 +7,12 @@
     </div>
     <div>
         <label for="name">Password: </label>
-        <input type="text" name="password" required>
-    </div>
+        <input type="password" name="password" id="myInput" required><br>
+        <input type="checkbox" onclick="myFunction()"> Show Password
+    </div><br>
     <div>
-        <button type="submit">Submit</button>
+        <button class="btn btn-outline-primary" type="submit">Submit</button>
     </div>
 </form>
 <br>
-<p>Don't have an account?</p><a href="/users/signup">Sign Up</a> or <a href="/users/login/github">Login with Github</a></p>
+<p>Don't have an account?</p><a class="btn btn-outline-success" href="/users/signup">Sign Up</a></p>

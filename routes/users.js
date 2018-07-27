@@ -53,9 +53,34 @@ router.post('/signup', function(req, res, next) {
   });
 });
 
-router.get('/login', function (req, res, next) {
-  res.render('login');
-});
+    router.get('/login', function (req, res, next) {
+      res.render('login');
+    });
+
+
+    router.post('/login', function (req, res, next) {
+      const hashedPassword = auth.hashPassword(req.body.password);
+      models.users.findOne({
+        where: {
+          Username: req.body.username
+        }
+      }).then(user => {
+        const isMatch = user.comparePassword(req.body.password)
+
+        if (!user) {
+          return res.status(401).json({
+            message: 'Login Failed'
+          });
+        } if (isMatch) {
+          const userId = user.UserId;
+          const token = auth.signUser(user);
+          res.cookie('jwt', token);
+          res.redirect('profile/' + userId);
+        } else {
+          console.log('login')
+        }
+      });
+    });
 
 router.get('/profile/:id', auth.verifyUser, function(req, res, next) {
   if (req.params.id !== String(req.user.UserId)) {

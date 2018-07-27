@@ -115,18 +115,19 @@ router.get('/logout', function (req, res) {
 
 //admin access
 
-      router.get('/', (req, res, next) => {
-        models.users.findAll({
-          where: {
-            Deleted: null
-          }
-        })
-        .then(usersFound => {
-          res.render('users', {
-            users: usersFound
-          });
-        });
+  router.get('/admin', (req, res, next) => {
+    models.users.findAll({
+      where: {
+        Deleted: null
+      }
+    })
+    .then(usersFound => {
+      res.render('admin', {
+        users: usersFound
       });
+    });
+  });
+      
 
   router.get('/:id', (req, res) => {
       let userId = req.params.id;
@@ -146,6 +147,13 @@ router.get('/logout', function (req, res) {
       });
     });
 
+    router.put('/:id', (req, res) => {
+      let userId = parseInt(req.params.id);
+      models.posts
+        .update({
+          
+        })
+    })
 
     router.delete('/:id/delete', (req, res) => {
       let userId = parseInt(req.params.id);

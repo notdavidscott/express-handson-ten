@@ -57,6 +57,35 @@ router.get('/login', function (req, res, next) {
   res.render('login');
 });
 
+router.get('/profile/:id', auth.verifyUser, function(req, res, next) {
+  if (req.params.id !== String(req.user.UserId)) {
+    res.send('this is not your profile');
+  } else {
+     //checking the status of admin via status variable 
+     let status; 
+     status = 'Admin';
+     if (req.user.Admin) {
+     } else {
+      status = 'Normal User';
+     }
+  
+  res.render('profile', {
+    FirstName: req.user.FirstName,
+    LastName: req.user.LastName,
+    Email: req.user.Email,
+    UserId: req.user.UserId,
+    Username: req.user.Username,
+    Status: status
+  });
+}
+
+});
+
+router.get('/logout', function (req, res) {
+  res.cookie('jwt', null);
+  res.redirect('/users/login');
+  });
+  module.exports = router;
 
 
 module.exports = router;

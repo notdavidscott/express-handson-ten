@@ -83,6 +83,7 @@ router.post('/signup', function(req, res, next) {
       });
     });
 
+
 router.get('/profile/:id', auth.verifyUser, function(req, res, next) {
   if (req.params.id !== String(req.user.UserId)) {
     res.send('this is not your profile');
@@ -116,6 +117,7 @@ router.get('/logout', function (req, res) {
 //admin access
 
   router.get('/admin', (req, res, next) => {
+  
     models.users.findAll({
       where: {
         Deleted: null
@@ -147,13 +149,28 @@ router.get('/logout', function (req, res) {
       });
     });
 
+
+    //get posts
+
     router.put('/:id', (req, res) => {
       let userId = parseInt(req.params.id);
       models.posts
         .update({
-          
-        })
-    })
+          PostTitle: req.body.postTitle,
+          PostBody: req.body.postBody
+        },
+        {
+          where: {
+           UserId: userId
+          }
+        }
+      ).then(result => {
+        res.send();
+      });
+    });
+
+
+    
 
     router.delete('/:id/delete', (req, res) => {
       let userId = parseInt(req.params.id);
@@ -172,6 +189,13 @@ router.get('/logout', function (req, res) {
         res.redirect('/users');
       });
     });
+
+   
+  
+
+
+
+
 
 
 module.exports = router;

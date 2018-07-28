@@ -2,9 +2,40 @@
     <h2>Welcome, {{FirstName}} {{LastName}}</h2>
 </div>
 
-<br>
+
+<script>
+
+    function onSubmit() {
+        const PostTitle = document.getElementById('postTitle').value;
+        const PostBody = document.getElementById('postBody').value;
+        $.ajax({
+        url: '/users/profile/{{UserId}}',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ PostTitle: PostTitle, PostBody: PostBody }),
+            method: 'PUT', complete: () => window.location.reload()
+            })
+        }
+</script> 
+
+
+<div class="create-post">
+<form id="posts" name="posts" method="POST" action="/users/profile">
+    <div>
+        <label for="title">Post Title: </label><br>
+        <input type="text" name="postTitle" required>
+    </div>
+    <div>
+        <label for="body">Whats on your mind? </label><br>
+        <textarea type="text" class="form-control" name="postBody" required></textarea>
+    </div>
+    <br>
+     <button class="btn btn-outline-primary" type="submit" id="submitButton">Post</button>
+   </form>
+   </div>
+
 
 <div class="posts-container">
+    
     <h2>Posts</h2>
         <div class="post">
             <p><strong>{{posts.Title}}</strong><br>

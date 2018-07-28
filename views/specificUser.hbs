@@ -11,6 +11,7 @@ Username: {{Username}} <br>
 
 
         <script>
+   
             
                 function onDelete() {
                         $.ajax({
@@ -21,16 +22,15 @@ Username: {{Username}} <br>
                     
                     </script>
 
+
+
+
+<div class="danger-zone">
 <h3>Admin Access - Delete User:</h3>
 
   <div class="button-box1">
       
    {{!-- <a class="btn" href="/users" id="back">Back</a><br> --}}
-      <button class="btn" onclick="onDelete()" id="deleteButton">Delete User</button>
+      <button class="btn btn-outline-danger" onclick="onDelete()" id="deleteButton">Delete User</button>
   </div>
-  
-
-
-<div>
-    
-</div> 
+  </div>

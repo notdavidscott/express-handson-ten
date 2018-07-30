@@ -1,4 +1,9 @@
-<div class="welcome-box">
+<nav class="navbar fixed-top navbar-light" style="background-color: #3186c2;" id="navbar">
+  Friends 
+</nav><br>
+
+<div class="container">
+    <div class="welcome-box">
     <h2>Welcome, {{FirstName}} {{LastName}}</h2>
 </div>
 
@@ -9,17 +14,20 @@
         const PostTitle = document.getElementById('postTitle').value;
         const PostBody = document.getElementById('postBody').value;
         $.ajax({
-        url: '/users/profile/{{UserId}}',
+        url: '/users/profile/:{{UserId}}',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ PostTitle: PostTitle, PostBody: PostBody }),
+            data: JSON.stringify({ postTitle: postTitle, postBody: postBody }),
             method: 'PUT', complete: () => window.location.reload()
             })
         }
 </script> 
 
+<div class="row">
+
+<div class="col-sm-6">
 
 <div class="create-post">
-<form id="posts" name="posts" method="POST" action="/users/profile">
+<form id="posts" name="posts" method="POST" action="/users/profile/{{UserId}}">
     <div>
         <label for="title">Post Title: </label><br>
         <input type="text" name="postTitle" required>
@@ -32,21 +40,33 @@
      <button class="btn btn-outline-primary" type="submit" id="submitButton">Post</button>
    </form>
    </div>
+</div>
+ <div class="col-sm-6">    
+<div class="user-info">
+<h3>User Info:</h3>
+<hr/>
+<p>Email: {{Email}}</p>
+<p>Username: {{Username}}</p>
+<a style="text-align:center;" href="/users/logout">Log out</a>
+<!--<p>Status: {{Status}}</p>-->
+</div>
 
 
+
+</div>
+<br>
+
+</div>
 <div class="posts-container">
     
     <h2>Posts</h2>
-        <div class="post">
-            <p><strong>{{posts.Title}}</strong><br>
+       
+      
+{{#each posts}}
+ <div class="post">
+<a href="/users/posts/{{PostId}}" style="color: #3186c2;"><h4>{{PostTitle}}</h4></a>
+<p>{{PostBody}}</p>
+  </div>
+{{/each}}
 
-            </p>
-        </div>
 </div>
-<br>
-<div class="user-info">
-<p>Email: {{Email}}</p>
-<p>Username: {{Username}}</p>
-<p>Status: {{Status}}</p>
-</div>
-<a href="/users/logout">Log out</a>

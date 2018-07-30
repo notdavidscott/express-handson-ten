@@ -36,13 +36,17 @@ module.exports = (sequelize, DataTypes) => {
     
   {}
 );
+    // users.associate = function(models) {
+    //   users.hasMany(models.posts, {
+    //     foreignKey: 'UserId'
+      
+    //   });
+    // };
     users.associate = function(models) {
       users.hasMany(models.posts, {
         foreignKey: 'UserId'
-      
       });
     };
-
   users.prototype.comparePassword = function(plainTextPassword) {
     let user = this;
     console.log('users/models comparePassword');

@@ -1,33 +1,50 @@
-<h1>Welcome! Please sign up</h1>
+<nav class="navbar fixed-top navbar-light" style="background-color: #3186c2;" id="navbar">
+  Friends 
+</nav>
+<div class="login-container">
+ <h1>Welcome to Friends! Please sign up</h1><br>
 
-<form id="signup" name="signup" method="POST" action="/users/signup">
+<div class="container">
+  
+  <div class="row">
+    
+    <div class="col align-self-center">
+      
+ <div class="form-itself">
+
+<form class="col-sm-5" id="signup" name="signup" method="POST" action="/users/signup">
+  
+   <div class="form-itself2">
+        <div class="col">
     <div>
         <label for="name">First Name: </label>
-        <input type="text" name="firstName" required>
+        <input class="form-control" type="text" name="firstName" required>
     </div>
     <div>
         <label for="name">Last Name: </label>
-        <input type="text" name="lastName" required>
+        <input class="form-control" type="text" name="lastName" required>
     </div>
     <div>
         <label for="name">Email: </label>
-        <input type="text" name="email" required>
+        <input class="form-control" type="text" name="email" required>
     </div>
     <div>
         <label for="name">Username: </label>
-        <input type="text" name="username" required>
+        <input class="form-control" type="text" name="username" required>
     </div>
     <div>
         <label for="name">Password: </label>
-       <input type="password" name="password" id="myInput" required><br>
+       <input class="form-control" type="password" name="password" id="myInput" required><br>
         <input type="checkbox" onclick="myFunction()"> Show Password
       
     </div>
-     
+     <br>
     <div>
        <button class="btn btn-outline-primary" type="submit">Submit</button>
     </div>
-</form>
-
+</div>
 <br>
 <p>Already have an account?</p><p><a class="btn btn-outline-success"href="/users/login">Log In</a> </p>
+</form>
+</div>
+</div>

@@ -1,36 +1,45 @@
-<p style="font-size: 30px;color:rgb(47, 134, 168);"><br>
+<nav class="navbar fixed-top navbar-light" style="background-color: #3186c2;" id="navbar">
+  Friends 
+</nav>
+<br>
+<div class="user-overview">
+<h2>User Overview</h2>
+<p style="font-size: 25px;color:rgb(47, 134, 168);"><br>
+
 Username: {{Username}} <br>
 <hr/>
 <strong>Full Name:</strong> {{FirstName}} {{LastName}}
 <br>
 <strong>Contact Info </strong><br>
-<strong style="margin-left:10px;">Email: </strong>{{Email}} <br>
-<strong style="margin-left:10px;">User Id: </strong>{{UserId}} 
+<strong>Email: </strong>{{Email}} <br>
+<strong>User Id: </strong>{{UserId}} 
 </p>
+
+{{!-- <h2>Posts:</h2>
+{{#each posts}}
+<h2>{{PostTitle}}</h2>
+<p>{{PostBody}}</p>
+{{/each}} --}}
+
 <hr/>
-
-
-        <script>
-   
-            
-                function onDelete() {
+        <script>        
+               function onDelete() {
                         $.ajax({
-                            url: '/users/{{UserId}}/delete',
-                            method: 'DELETE', complete: () => window.location = "/users"
+                            url: '/users/admin/editUser/{{UserId}}/delete',
+                            method: 'DELETE', complete: () => window.location = "/users/admin"
                         })
                     }
                     
                     </script>
 
 
-
-
 <div class="danger-zone">
-<h3>Admin Access - Delete User:</h3>
+<h3>Danger Zone</h3>
 
   <div class="button-box1">
-      
-   {{!-- <a class="btn" href="/users" id="back">Back</a><br> --}}
+    
       <button class="btn btn-outline-danger" onclick="onDelete()" id="deleteButton">Delete User</button>
   </div>
   </div>
+</div>
+ 
